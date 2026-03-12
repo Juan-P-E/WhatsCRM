@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 
-namespace GestorClientes
+namespace WhatsCRM
 {
     class Program
     {
-        static List<Cliente> clientes = new(); // Lista para guardar los clientes
-        static int siguienteId = 1; // Para asignar IDs automáticos
-        static string archivoClientes = "clientes.json"; // Nombre del archivo
+        static List<Cliente> clientes = new();
+        static List<Conversacion> conversaciones = new();
+        static List<Mensaje> mensajes = new();
+        static int siguienteId = 1;
+        static string archivoClientes = "clientes.json";
 
         static void Main(string[] args)
         {
@@ -36,12 +38,19 @@ namespace GestorClientes
                     case "4":
                         ModificarCliente();
 
-                        
                         break;
+                    
                     case "5":
                         BuscarCliente();
-
                         break;
+                    case "7":
+                        CrearConversacion();
+                        break;
+                    case "8":
+                        AgregarMensaje();
+                        break;
+
+
                     case "0":
                         Console.WriteLine("¡Hasta luego!");
                         return;
@@ -91,14 +100,76 @@ namespace GestorClientes
                 Console.WriteLine("ID inválido.");
             }
         }
+        static void CrearConversacion()
+        {
+            Console.Write("Ingrese el ID del cliente: ");
+            if (!int.TryParse(Console.ReadLine(), out int clienteId))
+            {
+                Console.WriteLine("ID inválido.");
+                return;
+            }
+
+            var cliente = clientes.FirstOrDefault(c => c.Id == clienteId);
+
+            if (cliente == null)
+            {
+                Console.WriteLine("Cliente no encontrado.");
+                return;
+            }
+
+            var conversacion = new Conversacion
+            {
+                Id = conversaciones.Count + 1,
+                ClienteId = clienteId
+            };
+
+            conversaciones.Add(conversacion);
+
+            Console.WriteLine("Conversación creada correctamente.");
+        }
+
+        static void AgregarMensaje()
+        {
+            Console.Write("Ingrese el ID de la conversación: ");
+            if (!int.TryParse(Console.ReadLine(), out int conversacionId))
+            {
+                Console.WriteLine("ID inválido.");
+                return;
+            }
+
+            var conversacion = conversaciones.FirstOrDefault(c => c.Id == conversacionId);
+
+            if (conversacion == null)
+            {
+                Console.WriteLine("Conversación no encontrada.");
+                return;
+            }
+
+            Console.Write("Ingrese el mensaje: ");
+            string texto = Console.ReadLine() ?? "";
+
+            var mensaje = new Mensaje
+            {
+                Id = mensajes.Count + 1,
+                ConversacionId = conversacionId,
+                Texto = texto
+            };
+
+            mensajes.Add(mensaje);
+
+            Console.WriteLine("Mensaje agregado correctamente.");
+        }
+
         static void MostrarMenu()
         {
-            Console.WriteLine("\n--- Gestor de Clientes ---");
+            Console.WriteLine("\n--- WhatsCRM ---");
             Console.WriteLine("1. Agregar cliente");
             Console.WriteLine("2. Listar clientes");
             Console.WriteLine("3. Eliminar cliente");
             Console.WriteLine("4. Modificar cliente");
             Console.WriteLine("5. Buscar cliente");
+            Console.WriteLine("7. Crear conversación");
+            Console.WriteLine("8. Agregar mensaje");
             Console.WriteLine("0. Salir");
             Console.Write("Seleccione una opción: ");
         }
@@ -191,6 +262,7 @@ namespace GestorClientes
         }
 
         static void ListarClientes()
+
         {
             Console.WriteLine("\n--- Lista de Clientes ---");
 

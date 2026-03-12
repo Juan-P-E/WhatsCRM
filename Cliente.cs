@@ -1,8 +1,7 @@
 ﻿using System;
 
-namespace GestorClientes
-{
-    public class Cliente
+namespace WhatsCRM
+{    public class Cliente
     {
         public int Id { get; set; }  // Identificador único
         public string? Nombre { get; set; }
