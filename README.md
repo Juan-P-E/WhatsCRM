@@ -1,46 +1,33 @@
-﻿# Gestor de Clientes en C#
+﻿# WhatsCRM
 
-Aplicación de consola desarrollada en **C# .NET** para la gestión de clientes, con persistencia en formato JSON.
+Mini proyecto en C# que simula una lógica básica de CRM con mensajería entre clientes.
 
-##  Funcionalidades
+El objetivo es practicar modelado de entidades y lógica de negocio similar a sistemas reales de CRM.
 
-- Agregar clientes con nombre, email, teléfono y empresa.
-- Listar todos los clientes.
-- Eliminar clientes por ID.
-- Modificar datos de un cliente.
-- Buscar clientes por nombre o email.
-- Guardado automático en `clientes.json`.
-- Carga automática de datos al iniciar.
+## Funcionalidades actuales
 
-##  Requisitos
+- Gestión de clientes
+- Creación de conversaciones
+- Registro de mensajes
+- Relación Cliente → Conversación → Mensajes
 
-- **.NET 6.0 SDK** o superior  
-  [Descargar .NET](https://dotnet.microsoft.com/en-us/download)
+## Tecnologías utilizadas
 
-##  Cómo usar
+- C#
+- .NET
+- Aplicación de consola
+- Persistencia simple con JSON
 
-1. Abrir el proyecto en Visual Studio o cualquier IDE compatible.
-2. Compilar el proyecto (**Ctrl + Shift + B**).
-3. Ejecutar (**Ctrl + F5** o `dotnet run` en la terminal).
-4. Seguir el menú en pantalla.
+## Ejemplo de flujo
 
-##  Ejemplo de uso
+1. Crear cliente  
+2. Crear conversación asociada al cliente  
+3. Agregar mensajes dentro de la conversación  
 
+Este proyecto fue desarrollado como práctica para mejorar habilidades en desarrollo backend con C#.
 
+## Próximas mejoras
 
---- Gestor de Clientes ---
-
-1. Agregar cliente
-
-2. Listar clientes
-
-3. Eliminar cliente
-
-4. Modificar cliente
-
-5. Buscar cliente
-
-6. Salir
-
-Seleccione una opción:
-Proyecto creado para pruebas de Git en Visual Studio.
+- Mostrar historial de mensajes
+- Mejorar estructura del proyecto
+- Persistencia completa de conversaciones
